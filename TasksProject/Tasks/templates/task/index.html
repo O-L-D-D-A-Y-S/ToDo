@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block script %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="AddTaskSection">
+        <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
+        <a href="{% url 'addTask' %}" class="stylishButton">Add Task</a>
+    </section>
+
+    <section class="bar">
+        <div class="taskBar"></div>
+        <div class="info">
+            <div data-total-task-completed="{{totalTaskCompleted}}">{{totalTaskCompleted}}</div>\<div
+                data-total-task="{{totalTasks}}">{{totalTasks}}</div>
+        </div>
+    </section>
+
+    <section>
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <ul class="topMostContainerOfTasks">
+            {% for task in tasks %}
+            <li class="liOfTask">
+                <div class="taskContainer">
+                    <div class="tickCircle" onclick="stateManager(event)" data-state={{task.is_complete}}
+                        data-id={{task.id}}><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Eo_circle_green_white_checkmark.svg/512px-Eo_circle_green_white_checkmark.svg.png?20200417133735"
+                            class="greentick">
+                    </div>
+                    <div class="taskanchor" onclick="showdescription(event)">
+                        <p class="taskText">{{task.title}}</p>
+                    </div>
+                    <a class="edit" href="{% url 'editTask' task.id %}">
+                        <div class="editContainer"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                                viewBox="0 -960 960 960" width="24px" fill="#111111">
+                                <path
+                                    d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                {% if task.description %}
+                <div class="task-description height-0" data-des="true" data-height="0">
+                    {{task.description|linebreaks}}
+                </div>
+                {% else %}
+                <div class="task-description height-0" data-des="false" data-height="0">
+                    No description provided
+                </div>
+                {% endif %}
+            </li>
+            {% empty %}
+            <div class="empty">No Tasks For Today</div>
+            {% endfor %}
+        </ul>
+        <div class="btn-con"><button type="button" class="btn btn-danger" onclick="changeIndexPageContent('none','block')">History</button>
+        </div>
+    </section>
+
+
+
+
+
+</main>
+
+<section class="viewHistory">
+    <button type="button" class="btn btn-danger form-group" onclick="changeIndexPageContent('block','none')">Home</button>
+    <ul class="datesUl none">
+        <li class="datesli">
+            <div class="navHeader">
+                <p class="Bold"></p>
+                <svg xmlns="http://www.w3.org/2000/svg" onclick="showContext(event)" height="32px" viewBox="0 -960 960 960" width="32px" fill="#e3e3e3"><path d="M480-360 280-560h400L480-360Z"/></svg>
+            </div>
+            <ol class="taskUl">
+               <li>
+                 <div>
+                    <p class="taskanchor" onclick="showdescription(event)"></p>
+                 </div>
+                  <p class="task-description height-0"></p>
+               </li>
+            </ol>
+        </li>
+    </ul>
+</section>
+
+{% endblock %}

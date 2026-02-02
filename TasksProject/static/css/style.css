@@ -1,0 +1,271 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0px 20px;
+    overflow-x: hidden;
+}
+
+main{
+    width: 100%;
+    padding: 50px 0px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.AddTaskSection{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.stylishButton{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 15px;
+    border: 0.5px solid #333333;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.stylishButton::before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    background-color: tomato;
+    z-index: -1;
+    transition: 0.3s;
+    animation: animate 2s linear infinite;
+}
+
+.stylishButton:hover::before{
+    height: calc(100% + 8px);
+    width:calc(100% + 8px);
+}
+
+.bar{
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50px;
+}
+
+.taskBar{
+    width: 80vw;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.topMostContainerOfTasks{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 0px;
+}
+
+ul{
+    list-style: none;
+}
+
+.liOfTask{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+}
+
+.taskContainer{
+    display: flex;
+    padding: 10px 10px 3px 10px;
+}
+
+.tickCircle{
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: left;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.greentick{
+    width: 100%;
+    height: 100%;
+}
+
+.tickCircle:hover{
+    cursor: pointer;
+}
+
+.taskText{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.info{
+    width: 80vw;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.task-description{
+    padding: 0px 10px 0px 40px;
+    overflow-y: scroll;
+    height: 100px;
+    transition: height 0.5s ease-in-out;
+}
+
+.height-0{
+    height: 0px;
+}
+
+.empty{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.editContainer{
+    border-left: 2px solid black;
+    padding-left: 20px;
+}
+
+.form-group{
+    margin:10px 0px;
+}
+
+.btn-con{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.btn-con > button{
+    border: 2px solid #aaaaaa;
+}
+
+
+@keyframes animate{
+    50%{
+        filter: hue-rotate(350deg);
+    }
+}
+
+.taskanchor{
+    flex-grow: 1;
+}
+
+.taskanchor:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*history*/
+
+
+
+
+.viewHistory{
+    display: none;
+}
+
+
+.historySection{
+    padding: 20px 10px;
+    border: 1px solid #eeeeee;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+ul{
+    padding-left: 0px !important;
+}
+
+.navHeader{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px 10px;
+    background-color: #aaaaaa;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.datesUl{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.taskUl{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+p{
+    margin-bottom: 0px !important;
+}
+
+
+.Bold{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.taskUl{
+    padding: 20px 30px !important;
+}
+
+.none{
+    display: none;
+}
+
+
+.rotate{
+    transform: rotateX(180deg);
+}
